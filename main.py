@@ -1,4 +1,5 @@
 import turtle
+import random
 
 class Circuito():
     corredores =[]
@@ -24,9 +25,23 @@ class Circuito():
             newTurtle.setpos(self.__startLine, self.__posStartY[i])
             self.corredores.append(newTurtle)
             
-    
+    def competir(self):  #debe ser invocada abajo
+        hayGanador = False
+        while not hayGanador:
+            for tortuga in self.corredores:
+                avance = random.randint(1,6)
+                tortuga.fd(avance)
+                #if tortuga.xcor() > self.__finishLine:
+                if tortuga.pos()[0] >= self.__finishLine:
+                    hayGanador = True
+                    print('la tortuga de color {} ha ganado!'.format(tortuga.color()[0]))
+                    break    
+                    
 if __name__ == "__main__":     #esto es buena práctica cuando sospechamos que podriamos importar el script
-    circuito = Circuito(640,480)            
+
+    circuito = Circuito(640,480)
+    circuito.competir()
+    
 
 
 
